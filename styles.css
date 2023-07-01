@@ -1,0 +1,10 @@
+.row {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+.cell {
+    height: 200px;
+    width: 200px;
+    border: solid 2px black;
+}
