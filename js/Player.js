@@ -10,11 +10,9 @@ class Player {
   
   setAsX() {
     this.isX = true;
-    this.isO = false;
   }
 
   setAsO() {
-    this.isO = true;
     this.isX = false;
   }
 
