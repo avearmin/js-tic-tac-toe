@@ -75,8 +75,8 @@ class Grid {
   }
 
   decrementCell6() {
-    this.col3++;
-    this.row2++;
+    this.col3--;
+    this.row2--;
   }
 
   incrementCell7() {
@@ -108,9 +108,9 @@ class Grid {
   }
 
   decrementCell9() {
-    this.col3++;
-    this.row3++;
-    this.lDia++;
+    this.col3--;
+    this.row3--;
+    this.lDia--;
   }
 
   reset() {
