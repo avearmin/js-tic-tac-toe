@@ -20,6 +20,46 @@ class Grid {
     this.cell9HasMove = false;
   }
   
+  isPlayer1Winner() {
+    return (
+      this.col1 === 3 ||
+      this.col2 === 3 ||
+      this.col3 === 3 ||
+      this.row1 === 3 ||
+      this.row2 === 3 ||
+      this.row3 === 3 ||
+      this.rDia === 3 ||
+      this.lDia === 3
+    );
+  }
+  
+  isPlayer2Winner() {
+    return (
+      this.col1 === -3 ||
+      this.col2 === -3 ||
+      this.col3 === -3 ||
+      this.row1 === -3 ||
+      this.row2 === -3 ||
+      this.row3 === -3 ||
+      this.rDia === -3 ||
+      this.lDia === -3
+    );
+  }
+
+  areAllCellsTaken() {
+    return (
+      this.cell1HasMove &&
+      this.cell2HasMove &&
+      this.cell3HasMove &&
+      this.cell4HasMove &&
+      this.cell5HasMove &&
+      this.cell6HasMove &&
+      this.cell7HasMove &&
+      this.cell8HasMove &&
+      this.cell9HasMove
+    ); 
+  }
+
   incrementCell1() {
     this.cell1HasMove = true;
     this.col1++;

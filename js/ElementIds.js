@@ -10,6 +10,20 @@ class ElementIds {
     this.cell7 =  document.getElementById("cell-7");
     this.cell8 =  document.getElementById("cell-8");
     this.cell9 =  document.getElementById("cell-9");
+    this.gameText = document.getElementById("game-text");
+    this.resetBtn = document.getElementById("reset-button");
+  }
+
+  resetAllCellTextContent() {
+    this.cell1.textContent = null;
+    this.cell2.textContent = null;
+    this.cell3.textContent = null;
+    this.cell4.textContent = null;
+    this.cell5.textContent = null;
+    this.cell6.textContent = null;
+    this.cell7.textContent = null;
+    this.cell8.textContent = null;
+    this.cell9.textContent = null;
   }
 
 }

@@ -2,12 +2,22 @@ class GameApp {
 
   constructor() {
     this.grid = new Grid();
-    this.ids = new ElementIds;
+    this.ids = new ElementIds();
     this.isPlayer1Turn = true;
   }
 
   start() {
+    this.initializeResetBtn();
     this.initializeCells();
+  }
+
+  initializeResetBtn() {
+    this.ids.resetBtn.addEventListener("click", () => {
+      this.grid.reset();
+      this.ids.resetAllCellTextContent();
+      this.isPlayer1Turn = true;
+      this.ids.gameText.textContent = "Click an empty cell to make a move";
+    });
   }
 
   initializeCells() {
@@ -30,11 +40,13 @@ class GameApp {
           this.grid.incrementCell1();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell1.textContent = "O";
           this.grid.decrementCell1();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -48,11 +60,13 @@ class GameApp {
           this.grid.incrementCell2();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell2.textContent = "O";
           this.grid.decrementCell2();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -66,11 +80,13 @@ class GameApp {
           this.grid.incrementCell3();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell3.textContent = "O";
           this.grid.decrementCell3();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -84,11 +100,13 @@ class GameApp {
           this.grid.incrementCell4();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell4.textContent = "O";
           this.grid.decrementCell4();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -102,11 +120,13 @@ class GameApp {
           this.grid.incrementCell5();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell5.textContent = "O";
           this.grid.decrementCell5();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -120,11 +140,13 @@ class GameApp {
           this.grid.incrementCell6();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell6.textContent = "O";
           this.grid.decrementCell6();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -138,11 +160,13 @@ class GameApp {
           this.grid.incrementCell7();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell7.textContent = "O";
           this.grid.decrementCell7();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -155,10 +179,12 @@ class GameApp {
           this.ids.cell8.textContent = "X";
           this.grid.incrementCell8();
           this.isPlayer1Turn = false;
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell8.textContent = "O";
           this.grid.decrementCell8();
           this.isPlayer1Turn = true;
+          this.checkAndDisplayTie();
         }
       }
     });
@@ -172,39 +198,39 @@ class GameApp {
           this.grid.incrementCell9();
           this.isPlayer1Turn = false;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         } else {
           this.ids.cell9.textContent = "O";
           this.grid.decrementCell9();
           this.isPlayer1Turn = true;
           this.checkAndDisplayWinner();
+          this.checkAndDisplayTie();
         }
       }
     });
   }
-
+  
   checkAndDisplayWinner() {
-    if (
-      this.grid.col1 === 3 ||
-      this.grid.col2 === 3 ||
-      this.grid.col3 === 3 ||
-      this.grid.row1 === 3 ||
-      this.grid.row2 === 3 ||
-      this.grid.row3 === 3 ||
-      this.grid.rDia === 3 ||
-      this.grid.lDia === 3
-    ) {
-      console.log("Player 1 Wins!");
-    } else if (
-      this.grid.col1 === -3 ||
-      this.grid.col2 === -3 ||
-      this.grid.col3 === -3 ||
-      this.grid.row1 === -3 ||
-      this.grid.row2 === -3 ||
-      this.grid.row3 === -3 ||
-      this.grid.rDia === -3 ||
-      this.grid.lDia === -3
-    ) {
-      console.log("Player 2 Wins!");
+    if (this.hasWinner()) {
+      this.displayWinner();
+    }
+  }
+  
+  hasWinner() {
+    return this.grid.isPlayer1Winner() || this.grid.isPlayer2Winner();
+  }
+
+  displayWinner() {
+    if (this.grid.isPlayer1Winner()) {
+      this.ids.gameText.textContent = "Player 1 Wins!";
+    } else if (this.grid.isPlayer2Winner()) {
+      this.ids.gameText.textContent = "Player 2 Wins!";
+    }
+  }
+  
+  checkAndDisplayTie() {
+    if (!this.hasWinner() && this.grid.areAllCellsTaken()) {
+      this.ids.gameText.textContent = "It's a tie!";
     }
   }
 
