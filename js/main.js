@@ -1,5 +1,5 @@
 function main() {
-  gameApp = new GameApp();
+  let gameApp = new GameApp();
   
   gameApp.start()
 }
