@@ -9,17 +9,43 @@ class Grid {
     this.row3 = 0;
     this.rDia = 0;
     this.lDia = 0;
-    this.cell1HasMove = false;
-    this.cell2HasMove = false;
-    this.cell3HasMove = false;
-    this.cell4HasMove = false;
-    this.cell5HasMove = false;
-    this.cell6HasMove = false;
-    this.cell7HasMove = false;
-    this.cell8HasMove = false;
-    this.cell9HasMove = false;
+    this.cell1 = new Cell(document.getElementById("cell-1"));
+    this.cell2 = new Cell(document.getElementById("cell-2"));
+    this.cell3 = new Cell(document.getElementById("cell-3"));
+    this.cell4 = new Cell(document.getElementById("cell-4"));
+    this.cell5 = new Cell(document.getElementById("cell-5"));
+    this.cell6 = new Cell(document.getElementById("cell-6"));
+    this.cell7 = new Cell(document.getElementById("cell-7"));
+    this.cell8 = new Cell(document.getElementById("cell-8"));
+    this.cell9 = new Cell(document.getElementById("cell-9"));
   }
   
+  isPlayer1AlmostWinner() {
+    return (
+      this.col1 == 2 ||
+      this.col2 == 2 ||
+      this.col3 == 2 ||
+      this.row1 == 2 ||
+      this.row2 == 2 ||
+      this.row3 == 2 ||
+      this.rDia == 2 ||
+      this.lDia == 2
+    );
+  }
+
+  isPlayer2AlmostWinner() {
+    return (
+      this.col1 == -2 ||
+      this.col2 == -2 ||
+      this.col3 == -2 ||
+      this.row1 == -2 ||
+      this.row2 == -2 ||
+      this.row3 == -2 ||
+      this.rDia == -2 ||
+      this.lDia == -2
+    );
+  }
+
   isPlayer1Winner() {
     return (
       this.col1 === 3 ||
@@ -48,72 +74,72 @@ class Grid {
 
   areAllCellsTaken() {
     return (
-      this.cell1HasMove &&
-      this.cell2HasMove &&
-      this.cell3HasMove &&
-      this.cell4HasMove &&
-      this.cell5HasMove &&
-      this.cell6HasMove &&
-      this.cell7HasMove &&
-      this.cell8HasMove &&
-      this.cell9HasMove
+      this.cell1.hasMove &&
+      this.cell2.hasMove &&
+      this.cell3.hasMove &&
+      this.cell4.hasMove &&
+      this.cell5.hasMove &&
+      this.cell6.hasMove &&
+      this.cell7.hasMove &&
+      this.cell8.hasMove &&
+      this.cell9.hasMove
     ); 
   }
 
   incrementCell1() {
-    this.cell1HasMove = true;
+    this.cell1.hasMove = true;
     this.col1++;
     this.row1++;
     this.lDia++;
   }
 
   decrementCell1() {
-    this.cell1HasMove = true;
+    this.cell1.hasMove = true;
     this.col1--;
     this.row1--;
     this.lDia--;
   }
 
   incrementCell2() {
-    this.cell2HasMove = true;
+    this.cell2.hasMove = true;
     this.col2++;
     this.row1++;
   }
 
   decrementCell2() {
-    this.cell2HasMove = true;
+    this.cell2.hasMove = true;
     this.col2--;
     this.row1--;
   }
 
   incrementCell3() {
-    this.cell3HasMove = true;
+    this.cell3.hasMove = true;
     this.col3++;
     this.row1++;
     this.rDia++;
   }
 
   decrementCell3() {
-    this.cell3HasMove = true;
+    this.cell3.hasMove = true;
     this.col3--;
     this.row1--;
     this.rDia--;
   }
 
   incrementCell4() {
-    this.cell4HasMove = true;
+    this.cell4.hasMove = true;
     this.col1++;
     this.row2++;
   }
 
   decrementCell4() {
-    this.cell4HasMove = true;
+    this.cell4.hasMove = true;
     this.col1--;
     this.row2--;
   }
 
   incrementCell5() {
-    this.cell5HasMove = true;
+    this.cell5.hasMove = true;
     this.col2++;
     this.row2++;
     this.lDia++;
@@ -121,7 +147,7 @@ class Grid {
   }
 
   decrementCell5() {
-    this.cell5HasMove = true;
+    this.cell5.hasMove = true;
     this.col2--;
     this.row2--;
     this.lDia--;
@@ -129,7 +155,7 @@ class Grid {
   }
 
   incrementCell6() {
-    this.cell6HasMove = true;
+    this.cell6.hasMove = true;
     this.col3++;
     this.row2++;
   }
@@ -141,40 +167,40 @@ class Grid {
   }
 
   incrementCell7() {
-    this.cell7HasMove = true;
+    this.cell7.hasMove = true;
     this.col1++;
     this.row3++;
     this.rDia++;
   }
 
   decrementCell7() {
-    this.cell7HasMove = true;
+    this.cell7.hasMove = true;
     this.col1--;
     this.row3--;
     this.rDia--;
   }
 
   incrementCell8() {
-    this.cell8HasMove = true;
+    this.cell8.hasMove = true;
     this.col2++;
     this.row3++;
   }
 
   decrementCell8() {
-    this.cell8HasMove = true;
+    this.cell8.hasMove = true;
     this.col2--;
     this.row3--;
   }
 
   incrementCell9() {
-    this.cell9HasMove = true;
+    this.cell9.hasMove = true;
     this.col3++;
     this.row3++;
     this.lDia++;
   }
 
   decrementCell9() {
-    this.cell9HasMove = true;
+    this.cell9.hasMove = true;
     this.col3--;
     this.row3--;
     this.lDia--;
@@ -189,15 +215,24 @@ class Grid {
     this.row3 = 0;
     this.rDia = 0;
     this.lDia = 0;
-    this.cell1HasMove = false;
-    this.cell2HasMove = false;
-    this.cell3HasMove = false;
-    this.cell4HasMove = false;
-    this.cell5HasMove = false;
-    this.cell6HasMove = false;
-    this.cell7HasMove = false;
-    this.cell8HasMove = false;
-    this.cell9HasMove = false;
+    this.cell1.hasMove = false;
+    this.cell2.hasMove = false;
+    this.cell3.hasMove = false;
+    this.cell4.hasMove = false;
+    this.cell5.hasMove = false;
+    this.cell6.hasMove = false;
+    this.cell7.hasMove = false;
+    this.cell8.hasMove = false;
+    this.cell9.hasMove = false;
+    this.cell1.id.textContent = null;
+    this.cell2.id.textContent = null;
+    this.cell3.id.textContent = null;
+    this.cell4.id.textContent = null;
+    this.cell5.id.textContent = null;
+    this.cell6.id.textContent = null;
+    this.cell7.id.textContent = null;
+    this.cell8.id.textContent = null;
+    this.cell9.id.textContent = null;
   }
 
 }

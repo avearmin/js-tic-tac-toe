@@ -3,20 +3,20 @@ class GameApp {
   constructor() {
     this.grid = new Grid();
     this.ids = new ElementIds();
-    this.isPlayer1Turn = true;
+    this.ai = new GameAI(this.grid, this.ids);
   }
 
   start() {
     this.initializeResetBtn();
     this.initializeCells();
+    this.ai.makeFirstMove();
   }
 
   initializeResetBtn() {
     this.ids.resetBtn.addEventListener("click", () => {
       this.grid.reset();
-      this.ids.resetAllCellTextContent();
-      this.isPlayer1Turn = true;
       this.ids.gameText.textContent = "Click an empty cell to make a move";
+      this.ai.makeFirstMove();
     });
   }
 
@@ -33,179 +33,111 @@ class GameApp {
  }
 
   initializeCell1() {
-    this.ids.cell1.addEventListener("click", () => {
-      if (this.grid.cell1HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell1.textContent = "X";
-          this.grid.incrementCell1();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell1.textContent = "O";
-          this.grid.decrementCell1();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell1.id.addEventListener("click", () => {
+      if (this.grid.cell1.hasMove === false) {
+        this.grid.cell1.id.textContent = "X";
+        this.grid.incrementCell1();
+        this.ai.makeNextMove(this.grid.cell1.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
       }
     });
   }
 
   initializeCell2() {
-    this.ids.cell2.addEventListener("click", () => {
-      if (this.grid.cell2HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell2.textContent = "X";
-          this.grid.incrementCell2();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell2.textContent = "O";
-          this.grid.decrementCell2();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell2.id.addEventListener("click", () => {
+      if (this.grid.cell2.hasMove === false) {
+        this.grid.cell2.id.textContent = "X";
+        this.grid.incrementCell2();
+        this.ai.makeNextMove(this.grid.cell2.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
       }
     });
   }
 
   initializeCell3() {
-    this.ids.cell3.addEventListener("click", () => {
-      if (this.grid.cell3HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell3.textContent = "X";
-          this.grid.incrementCell3();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell3.textContent = "O";
-          this.grid.decrementCell3();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell3.id.addEventListener("click", () => {
+      if (this.grid.cell3.hasMove === false) {
+        this.grid.cell3.id.textContent = "X";
+        this.grid.incrementCell3();
+        this.ai.makeNextMove(this.grid.cell3.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
       }
     });
   }
 
   initializeCell4() {
-    this.ids.cell4.addEventListener("click", () => {
-      if (this.grid.cell4HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell4.textContent = "X";
-          this.grid.incrementCell4();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell4.textContent = "O";
-          this.grid.decrementCell4();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell4.id.addEventListener("click", () => {
+      if (this.grid.cell4.hasMove === false) {
+        this.grid.cell4.id.textContent = "X";
+        this.grid.incrementCell4();
+        this.ai.makeNextMove(this.grid.cell4.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
       }
     });
   }
 
   initializeCell5() {
-    this.ids.cell5.addEventListener("click", () => {
-      if (this.grid.cell5HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell5.textContent = "X";
-          this.grid.incrementCell5();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell5.textContent = "O";
-          this.grid.decrementCell5();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell5.id.addEventListener("click", () => {
+      if (this.grid.cell5.hasMove === false) {
+        this.grid.cell5.id.textContent = "X";
+        this.grid.incrementCell5();
+        this.ai.makeNextMove(this.grid.cell5.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
+
       }
     });
   }
 
   initializeCell6() {
-    this.ids.cell6.addEventListener("click", () => {
-      if (this.grid.cell6HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell6.textContent = "X";
-          this.grid.incrementCell6();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell6.textContent = "O";
-          this.grid.decrementCell6();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell6.id.addEventListener("click", () => {
+      if (this.grid.cell6.hasMove === false) {
+        this.grid.cell6.id.textContent = "X";
+        this.grid.incrementCell6();
+        this.ai.makeNextMove(this.grid.cell6.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
+
       }
     });
   }
 
   initializeCell7() {
-    this.ids.cell7.addEventListener("click", () => {
-      if (this.grid.cell7HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell7.textContent = "X";
-          this.grid.incrementCell7();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell7.textContent = "O";
-          this.grid.decrementCell7();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell7.id.addEventListener("click", () => {
+      if (this.grid.cell7.hasMove === false) {
+        this.grid.cell7.id.textContent = "X";
+        this.grid.incrementCell7();
+        this.ai.makeNextMove(this.grid.cell7.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
       }
     });
   }
 
   initializeCell8() {
-    this.ids.cell8.addEventListener("click", () => {
-      if (this.grid.cell8HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell8.textContent = "X";
-          this.grid.incrementCell8();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell8.textContent = "O";
-          this.grid.decrementCell8();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell8.id.addEventListener("click", () => {
+      if (this.grid.cell8.hasMove === false) {
+        this.grid.cell8.id.textContent = "X";
+        this.grid.incrementCell8();
+        this.ai.makeNextMove(this.grid.cell8.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
       }
     });
   }
 
   initializeCell9() {
-    this.ids.cell9.addEventListener("click", () => {
-      if (this.grid.cell9HasMove === false) {
-        if (this.isPlayer1Turn) {
-          this.ids.cell9.textContent = "X";
-          this.grid.incrementCell9();
-          this.isPlayer1Turn = false;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        } else {
-          this.ids.cell9.textContent = "O";
-          this.grid.decrementCell9();
-          this.isPlayer1Turn = true;
-          this.checkAndDisplayWinner();
-          this.checkAndDisplayTie();
-        }
+    this.grid.cell9.id.addEventListener("click", () => {
+      if (this.grid.cell9.hasMove === false) {
+        this.grid.cell9.id.textContent = "X";
+        this.grid.incrementCell9();
+        this.ai.makeNextMove(this.grid.cell9.id);
+        this.checkAndDisplayWinner();
+        this.checkAndDisplayTie();
       }
     });
   }
