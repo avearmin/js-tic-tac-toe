@@ -161,7 +161,7 @@ class Grid {
   }
 
   decrementCell6() {
-    this.cell6HasMove = true;
+    this.cell6.hasMove = true;
     this.col3--;
     this.row2--;
   }
