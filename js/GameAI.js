@@ -231,31 +231,36 @@ class GameAI {
     
     let randomInt = this.getRandomInt(8);
     
-    if (randomInt === 0) {
-      this.grid.decrementCell1();
+    if (!possibleMoves[randomInt].hasMove) {
+      if (randomInt === 0) {
+        this.grid.decrementCell1();
+      }
+      else if (randomInt === 1) {
+        this.grid.decrementCell2();
+      } 
+      if (randomInt === 2) {
+        this.grid.decrementCell3();
+      } 
+      if (randomInt === 3) {
+        this.grid.decrementCell4();
+      }
+      if (randomInt === 4) {
+        this.grid.decrementCell6();
+      }
+      if (randomInt === 5) {
+        this.grid.decrementCell7();
+      }
+      if (randomInt === 6) {
+        this.grid.decrementCell8();
+      }
+      if (randomInt === 7) {
+        this.grid.decrementCell9();
+      }
+      possibleMoves[randomInt].id.textContent = "O";
     }
-    else if (randomInt === 1) {
-      this.grid.decrementCell2();
-    } 
-    if (randomInt === 2) {
-      this.grid.decrementCell3();
-    } 
-    if (randomInt === 3) {
-      this.grid.decrementCell4();
+    else {
+      this.makeRandomMove();
     }
-    if (randomInt === 4) {
-      this.grid.decrementCell6();
-    }
-    if (randomInt === 5) {
-      this.grid.decrementCell7();
-    }
-    if (randomInt === 6) {
-      this.grid.decrementCell8();
-    }
-    if (randomInt === 7) {
-      this.grid.decrementCell9();
-    }
-    possibleMoves[randomInt].id.textContent = "O";
   }
 
   makeCounterMove(cellId) {
