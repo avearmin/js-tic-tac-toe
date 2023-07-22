@@ -3,6 +3,7 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
+    background-color: #101820
 }
 
 .flex {
@@ -29,10 +30,15 @@ body {
 .cell {
     height: 200px;
     width: 200px;
-    border: solid 2px black;
+    border: solid 2px #FEE715;
     font-size: 75px;
+    color: #FEE715;
 }
 
 #game-container {
     text-align: center;
+}
+
+#game-text {
+    color: #FEE715;
 }
